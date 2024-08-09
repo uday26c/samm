@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Posts Page</title>
+    <style>
+        /* styles.css */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+}
+
+.posts-container {
+    padding: 20px;
+}
+
+.search-filter-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.search-container, .filter-container {
+    max-width: 400px; /* Optional: Restricts the width of the search and filter */
+}
+
+#search, #category-filter {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 0.9em; /* Smaller font size */
+}
+
+#search {
+    border: none; /* Search bar without border */
+}
+
+.filter-container {
+    margin-left: 10px; /* Spacing between search and filter */
+}
+
+.posts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.post-card {
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.post-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.post-card h2 {
+    margin: 15px;
+    font-size: 1.5em;
+    color: #333;
+}
+
+.post-card p {
+    margin: 15px;
+    color: #555;
+}
+
+.post-card a {
+    display: block;
+    margin: 15px;
+    color: #007BFF;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.post-card a:hover {
+    text-decoration: underline;
+}
+
+.post-card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+.pagination {
+    text-align: center;
+    padding: 20px;
+}
+
+.load-more {
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+.load-more:hover {
+    background-color: #0056b3;
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    
+    bottom: 0;
+    width: 100%;
+}
+@media (max-width:480px) {
+
+    
+.post-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+}
+
+  /* Navigation Bar */
+  header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 0;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo a {
+            color: #fff;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 15px;
+        }
+
+        .nav-links li {
+            display: inline;
+        }
+
+        .nav-links a {
+            color: #fff;
+            font-weight: bold;
+        }
+          
+        .search-bar {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.search-bar form {
+    display: flex;
+    align-items: center;
+    border-radius: 25px;
+    overflow: hidden;
+    border: 2px solid #fff;
+}
+
+.search-bar input {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 25px 0 0 25px;
+    font-size: 16px;
+    outline: none;
+    width: 200px;
+    transition: width 0.4s ease;
+}
+
+.search-bar button {
+    background-color: #ff6f61;
+    border: none;
+    border-radius: 0 25px 25px 0;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.search-bar button img {
+    width: 20px;
+    vertical-align: middle;
+}
+
+.search-bar button:hover {
+    background-color: #ff4f41;
+}
+
+.search-bar input:focus {
+    width: 300px;
+}
+            /* Responsive Design */
+            @media (max-width: 768px) {
+           
+
+            nav {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+
+        
+          /* Responsive Styles for max-width 480px */
+          @media (max-width: 480px) {
+           
+
+           .footer-content {
+               flex-direction: column;
+           }
+
+           .footer-content div {
+               text-align: center;
+           }
+
+           .footer-newsletter input[type="email"] {
+               width: calc(100% - 30px);
+               margin-bottom: 10px;
+               padding-left: 100px;
+
+           }
+
+           .footer-newsletter button {
+               width: 100%;
+            padding-left: 100px;
+               
+           }
+       }
+
+
+       
+       .footer {
+            background: #333;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .footer-content div {
+            flex: 1;
+            margin: 10px;
+            text-align: left;
+        }
+
+        .footer h3 {
+            margin-bottom: 15px;
+        }
+
+        @media (max-width:480px){ 
+        .footer-links{
+            padding-left: 90px;
+        }
+        .footer-newsletter input[type="email"] {
+               width: calc(100% - 30px);
+               margin-bottom: 10px;
+               padding-left: 100px;
+
+           }
+
+           .footer-newsletter button {
+               width: 100%;
+            padding-left: 100px;
+               
+           }
+           .footer-newsletter{
+            padding-left: 70px;
+           }
+    }
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links ul li a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .footer-links ul li a:hover {
+            text-decoration: underline;
+        }
+
+        .footer-newsletter input[type="email"] {
+            width: calc(100% - 100px);
+            width: 100px;
+            padding: 10px;
+            margin-right: 5px;
+            border-radius: 5px;
+            border: none;
+            
+        }
+
+        .footer-newsletter button {
+            padding: 10px;
+            background-color: #f4b400;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            color: #333;
+            width: 100px;
+            
+
+        }
+
+        .footer-newsletter button:hover {
+            background-color: #e1a000;
+        }
+
+        .footer-social a {
+            margin-right: 10px;
+            color: #fff;
+            text-decoration: none;
+        }
+        .footer-social img{
+            width: 30px;
+            height: 30px;
+        }
+
+        .footer-social a:hover {
+            color: #f4b400;
+        }
+
+        .footer-legal a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        .footer-legal a:hover {
+            text-decoration: underline;
+        }
+
+          /* Responsive Styles for max-width 480px */
+          @media (max-width: 480px) {
+           
+
+            .footer .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer .social-media {
+                margin-top: 10px;
+            }
+
+            .scroll-to-top {
+                bottom: 20px;
+                right: 20px;
+                padding: 8px 12px;
+                font-size: 1.2rem;
+            }
+        }
+
+
+    </style>
+</head>
+<body>
+     <!-- Navigation Bar -->
+     <header>
+        <nav>
+            <div class="logo">
+                <a href="index.html">StrangeSage</a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="search-bar">
+                <input type="text" placeholder="Search...">
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="posts-container">
+            <div class="search-filter-container">
+                <div class="search-container">
+                    <input type="text" id="search" placeholder="Search posts...">
+                </div>
+                <div class="filter-container">
+                    <select id="category-filter">
+                        <option value="">All Categories</option>
+                        <option value="tech">Tech</option>
+                        <option value="finance">Finance</option>
+                        <option value="lifestyle">Lifestyle</option>
+                    </select>
+                </div>
+            </div>
+
+            <section class="posts-grid" id="posts-grid">
+                <!-- Initial posts will be loaded here by JavaScript -->
+            </section>
+
+            <div class="pagination">
+                <button class="load-more" id="load-more">Load More</button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Services</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-newsletter">
+                    <h3>Subscribe to Our Newsletter</h3>
+                    <form id="newsletterForm">
+                        <input type="email" placeholder="Enter your email" required>
+                        <button type="submit">Subscribe</button>
+                    </form>
+                </div>
+                <div class="footer-contact">
+                    <h3>Contact Us</h3>
+                    <p>Email: contact@strangesage.com</p>
+                    <p>Phone: +123 456 7890</p>
+                    <p>Address: 123 Street, City, Country</p>
+                </div>
+                <div class="footer-social">
+                    <h3>Follow Us</h3>
+                    <a href="#"><img src="https://cdn1.iconfinder.com/data/icons/logotypes/32/square-facebook-512.png" alt="Facebook"></a>
+                    <a href="#"><img src="https://cdn2.iconfinder.com/data/icons/social-media-2285/512/1_Twitter3_colored_svg-512.png" alt="Twitter"></a>
+                    <a href="#"><img src="https://cdn2.iconfinder.com/data/icons/social-media-2285/512/1_Linkedin_unofficial_colored_svg-512.png" alt="LinkedIn"></a>
+                    <a href="#"><img src="https://cdn2.iconfinder.com/data/icons/social-media-icons-23/800/instagram-512.png" alt="Instagram"></a>
+                </div>
+            </div>
+            <div class="footer-legal">
+                <a href="#">Privacy Policy</a> | 
+                <a href="#">Terms of Service</a>
+            </div>
+            <div class="footer-copyright">
+                <p>&copy; 2024 StrangeSage. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <!-- Optional JavaScript -->
+    <script>
+        // Sample posts data with categories
+        const additionalPosts = [
+            {
+                category: "tech",
+                title: "Exploring the Metaverse",
+                description: "A deep dive into the concept of the metaverse and its potential impact.",
+                image: "https://www.syte.ai/wp-content/webp-express/webp-images/uploads/2021/10/Glossary-Images-1-24_23-768x469.jpg.webp",
+            },
+            {
+                category: "tech",
+                title: "The Future of AI",
+                description: "Explore how artificial intelligence is set to transform various industries in the coming years.",
+                image: "https://www.syte.ai/wp-content/webp-express/webp-images/uploads/2021/10/Glossary-Images-1-24_23-768x469.jpg.webp",
+            },
+            {
+                category: "tech",
+                title: "Quantum Computing: The Next Big Leap",
+                description: "Understand the principles of quantum computing and its potential to revolutionize technology.",
+                image: "https://www.syte.ai/wp-content/webp-express/webp-images/uploads/2021/10/Glossary-Images-1-24_23-768x469.jpg.webp",
+            },
+            {
+                category: "finance",
+                title: "Investment Strategies for 2024",
+                description: "Learn about the most promising investment strategies to consider in the upcoming year.",
+                image: "https://www.syte.ai/wp-content/webp-express/webp-images/uploads/2021/10/Glossary-Images-1-24_23-768x469.jpg.webp",
+            },
+            {
+                category: "finance",
+                title: "Understanding Cryptocurrency",
+                description: "A comprehensive guide to understanding cryptocurrencies and their impact on the global economy.",
+                image: "https://www.syte.ai/wp-content/webp-express/webp-images/uploads/2021/10/Glossary-Images-1-24_23-768x469.jpg.webp",
+            },
+            {
+                category: "finance",
+                title: "Cryptocurrency Trends in 2024",
+                description: "What to expect from the cryptocurrency market in the year 2024.",
+                image: "https://www.syte.ai/wp-content/webp-express/webp-images/uploads/2021/10/Glossary-Images-1-24_23-768x469.jpg.webp",
+            },
+            {
+                category: "lifestyle",
+                title: "Healthy Living Tips",
+                description: "Discover practical tips and habits for a healthier lifestyle and improved well-being.",
+                image: "https://www.syte.ai/wp-content/webp-express/webp-images/uploads/2021/10/Glossary-Images-1-24_23-768x469.jpg.webp",
+            },
+            {
+                category: "lifestyle",
+                title: "Travel Destinations for 2024",
+                description: "Explore the top travel destinations to visit in 2024 and plan your next adventure.",
+                image: "https://www.syte.ai/wp-content/webp-express/webp-images/uploads/2021/10/Glossary-Images-1-24_23-768x469.jpg.webp",
+            },
+            {
+                category: "lifestyle",
+                title: "Sustainable Living Practices",
+                description: "Tips and practices for living a more sustainable lifestyle.",
+                image: "https://www.syte.ai/wp-content/webp-express/webp-images/uploads/2021/10/Glossary-Images-1-24_23-768x469.jpg.webp",
+            }
+        ];
+
+        let visiblePostCount = 3; // Number of posts initially visible
+        const postsGrid = document.getElementById('posts-grid');
+        const loadMoreButton = document.getElementById('load-more');
+        const loadInterval = 5000; // Time in milliseconds (5000 ms = 5 seconds)
+
+        function loadMorePosts() {
+            // Check if there are more posts to load
+            if (visiblePostCount >= additionalPosts.length) {
+                loadMoreButton.style.display = 'none'; // Hide button if no more posts
+                clearInterval(autoLoadInterval); // Stop automatic loading
+                return;
+            }
+
+            // Create new post elements
+            for (let i = visiblePostCount - 3; i < visiblePostCount; i++) {
+                if (i >= additionalPosts.length) break;
+
+                const post = additionalPosts[i];
+                const postCard = document.createElement('article');
+                postCard.className = 'post-card';
+                postCard.dataset.category = post.category;
+
+                postCard.innerHTML = `
+                    <img src="${post.image}" alt="${post.title}" loading="lazy">
+                    <h2>${post.title}</h2>
+                    <p>${post.description}</p>
+                    <a href="#">Read More</a>
+                `;
+
+                postsGrid.appendChild(postCard);
+            }
+
+            // Update visible post count
+            visiblePostCount += 3;
+        }
+
+        // Load initial posts
+        loadMorePosts();
+
+        // Load more posts automatically every few seconds
+        const autoLoadInterval = setInterval(loadMorePosts, loadInterval);
+
+        // Optional: Allow manual loading as well
+        loadMoreButton.addEventListener('click', loadMorePosts);
+
+        // JavaScript for search functionality
+        document.getElementById('search').addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            const posts = document.querySelectorAll('.post-card');
+            posts.forEach(post => {
+                const title = post.querySelector('h2').textContent.toLowerCase();
+                const content = post.querySelector('p').textContent.toLowerCase();
+                if (title.includes(searchTerm) || content.includes(searchTerm)) {
+                    post.style.display = '';
+                } else {
+                    post.style.display = 'none';
+                }
+            });
+        });
+
+        // JavaScript for filtering by category
+        document.getElementById('category-filter').addEventListener('change', function() {
+            const selectedCategory = this.value;
+            const posts = document.querySelectorAll('.post-card');
+            posts.forEach(post => {
+                if (selectedCategory === '' || post.dataset.category === selectedCategory) {
+                    post.style.display = '';
+                } else {
+                    post.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
